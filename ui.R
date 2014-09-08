@@ -11,9 +11,6 @@ shinyUI(navbarPage("IPD International $1 Billion Challenge 2014",
                                                     choices = list("YTD" = 1, "HTD" = 2)
                                                    , selected = 1)
                                          
-                                ),
-                                column(4,
-                                       img(src="legend3.png")
                                 )
                               ),
                               fluidRow(
