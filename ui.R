@@ -7,11 +7,13 @@ shinyUI(navbarPage("IPD International $1 Billion Challenge 2014",
                               htmlOutput('myMap'),
                               fluidRow(
                                 column(3,
-                                       sliderInput('year', 'Map Year',format ="####",  min=2010, max=2012, value=2012, 
-                                                   step=1)
+                                       selectInput("select", label = h3("Select Contest Duration"), 
+                                                    choices = list("YTD" = 1, "HTD" = 2)
+                                                   , selected = 1)
+                                         
                                 ),
                                 column(4,
-                                       h5("Legend:", "100", {img(src="legend.png")}, "4000")
+                                       img(src="legend3.png")
                                 )
                               ),
                               fluidRow(

@@ -1,3 +1,27 @@
+#Calculation Table
+output$myTable2 <- renderTable(table(input$country),include.rownames=FALSE)
+table<-function(x){
+  y1<-data3[x,2]
+  y2<-data3[x,3]
+  y3<-data3[x,4]
+  g1<-100*((y2-y1)/y1)
+  g1<-as.numeric(format(round(g1, 2), nsmall = 2))
+  g2<-((y3-y2)/y2)*100
+  g2<-as.numeric(format(round(g2, 2), nsmall = 2))
+  avg<-((g1+g2)/2)
+  df<-data.frame(rbind(data3[x,-1],c("YoY Growth % :",g1,g2)),check.rows = FALSE,check.names=FALSE)
+  output$text1 <- renderText({ 
+    paste("Avg. Growth % ",avg)
+  })
+  return(df)
+}
+output$cSelector <- renderUI({
+  selectInput("country", "Select Country:", as.list(YTD3$"COUNTRY/REGION")) 
+})
+--
+sliderInput('year', 'Map Year',format ="####",  min=2010, max=2012, value=2012, 
+            step=1)
+--
 data2<-data1[,-2:-54]
 data2<-data2[,-5]
 data3<-data.frame(na.omit(data2),check.names=FALSE,stringsAsFactors=FALSE)
@@ -43,3 +67,5 @@ h6("Source:", {a("World Bank", href="http://data.worldbank.org/indicator/SH.XPD.
    " | ","Code:", {a("https://github.com/mliq/HealthMap", href="https://github.com/mliq/HealthMap")}),
 #htmlOutput('myMap'),
 #h4("Legend:", "100", {img(src="legend.png")}, "4000"),
+
+h5("Legend:", "100", {img(src="legend3.png")}, "4000")
