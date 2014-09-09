@@ -2,7 +2,6 @@ library(googleVis)
 library(shiny)
 
 shinyServer(function(input, output) {
-  #setwd("C:/Users/Michael/SkyDrive/Coursera/GitHub/Health2")
   ###Pre-Processing
   YTD <- read.csv("YTD.csv",stringsAsFactors=FALSE)
 	##YTD First
@@ -30,7 +29,7 @@ shinyServer(function(input, output) {
   ##
   ###
 
-  
+  #MAP
   output$myMap <- renderGvis({  
     if (input$adjust==1){
       data<-cbind(YTD," $$ over OP"=as.numeric(gsub('\\$', '', YTD[,6])))
@@ -45,6 +44,7 @@ shinyServer(function(input, output) {
   gvisGeoChart(data, locationvar="Country/Region", colorvar=var, options=list(                              
                                     colorAxis=color,height=400,width=600,keepAspectRatio='false'))
   })
+  #TABLE
   output$myTable <- renderGvis({
     if (input$adjust==1){
       data<-YTD
@@ -54,6 +54,4 @@ shinyServer(function(input, output) {
     }
     gvisTable(data,options=list(width=450))
   })
-  
- 
 })

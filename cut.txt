@@ -1,5 +1,8 @@
+#setwd("C:/Users/Michael/SkyDrive/Coursera/GitHub/Health2")
+
+#SUMMARY BOX
 #Calculation Table
-output$myTable2 <- renderTable(table(input$country),include.rownames=FALSE)
+output$myTable2 <- renderTable(table(input$country))
 table<-function(x){
   y1<-data3[x,2]
   y2<-data3[x,3]
