@@ -33,7 +33,7 @@ shinyServer(function(input, output) {
   output$myMap <- renderGvis({  
     if (input$adjust==1){
       data<-cbind(YTD," $$ over OP"=as.numeric(gsub('\\$', '', YTD[,6])))
-      color="{values:[0,0,.5,1],colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
+      color="{values:[0,.5,1,1.1],colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
       var=" $$ over OP"
     }
     if (input$adjust==2){

@@ -1,4 +1,7 @@
-#setwd("C:/Users/Michael/SkyDrive/Coursera/GitHub/Health2")
+setwd("C:/Users/Michael/SkyDrive/Coursera/GitHub/Health2")
+
+color="{values:[0,0,.5,1],colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
+color="{values:[0,5,10,20],colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
 
 #SUMMARY BOX
 #Calculation Table
