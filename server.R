@@ -28,13 +28,15 @@ shinyServer(function(input, output) {
   #gsub('\\$', '', YTD[,6])
   ##
   ###
-  dataInput <- reactive({
-      data<-input$select
-    })
+
   
   output$myMap <- renderGvis({  
+    if (input$adjust==1){
       data<-cbind(YTD," $$ over OP"=as.numeric(gsub('\\$', '', YTD[,6])))
-    
+    }
+    if (input$adjust==2){
+      data<-cbind(HTD," $$ over OP"=as.numeric(gsub('\\$', '', HTD[,6])))
+    }
   gvisGeoChart(data, locationvar="COUNTRY/REGION", colorvar=" $$ over OP", options=list(                              
                                     colorAxis="{values:[0,0.5,1,2],
                                    colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}",height=400,width=600,keepAspectRatio='false'))

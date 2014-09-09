@@ -7,7 +7,7 @@ shinyUI(navbarPage("IPD International $1 Billion Challenge 2014",
                               htmlOutput('myMap'),
                               fluidRow(
                                 column(3,
-                                       selectInput("select", label = h3("Select Contest Duration"), 
+                                       selectInput("adjust", label = h3("Select Contest Duration"), 
                                                     choices = list("YTD" = 1, "HTD" = 2)
                                                    , selected = 1)
                                          
