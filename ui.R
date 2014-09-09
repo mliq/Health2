@@ -1,5 +1,5 @@
-shinyUI(navbarPage("IPD International $1 Billion Challenge 2014",
-                   tabPanel("YTD",
+shinyUI(navbarPage("IPD International $1 Billion Challenge",
+                   tabPanel("2014",
                             fluidPage(
                               title="IPD International $1 Billion Challenge 2014", 
                               img(src="600x100.jpg"),
@@ -7,8 +7,8 @@ shinyUI(navbarPage("IPD International $1 Billion Challenge 2014",
                               htmlOutput('myMap'),
                               fluidRow(
                                 column(3,
-                                       selectInput("adjust", label = h3("Select Contest Duration"), 
-                                                    choices = list("YTD" = 1, "HTD" = 2)
+                                       selectInput("adjust", label = h3("Select Contest"), 
+                                                    choices = list("YTD Absolute $" = 1, "HTD LC%" = 2)
                                                    , selected = 1)
                                          
                                 )
@@ -26,7 +26,5 @@ shinyUI(navbarPage("IPD International $1 Billion Challenge 2014",
                                 )
                               )
                             )                          
-                            ),
-                   tabPanel("HTD"
-                           )
+                            )
   ))
