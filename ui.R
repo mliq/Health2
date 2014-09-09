@@ -15,7 +15,7 @@ shinyUI(navbarPage("IPD International $1 Billion Challenge",
                               ),
                               fluidRow(
                                 column(4, 
-                                       h4("Calculate Growth Rates"),
+                                       h4("Select A Country for Summary:"),
                                        uiOutput("cSelector"),
                                        tableOutput('myTable2'),
                                        h4(htmlOutput('text1'))
