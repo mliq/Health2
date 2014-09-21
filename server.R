@@ -32,10 +32,17 @@ shinyServer(function(input, output) {
   HTD3<-cbind("Rank"=rownames(HTD2),HTD2[,1:4])
   #HTD Table ready.
   
-  #MAP
+  ###Fix non-displayed countries
+  YTD8<-YTD7
+  YTD8[,2]<-gsub("UK Ireland", "Great Britain", YTD8[,2])
+  #Ireland
+  YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Great Britain"),])
+  YTD8[dim(YTD8)[1],2]<-"Ireland"
+  
+  ###MAP
   output$myMap <- renderGvis({  
     if (input$adjust==1){
-      data<-cbind(YTD7,"YTD Inc. USD over OP"=as.numeric(sub("\\$", "", YTD7$"YTD Incremental $$ over OP")))
+      data<-cbind(YTD8,"YTD Inc. USD over OP"=as.numeric(sub("\\$", "", YTD8$"YTD Incremental $$ over OP")))
       #color="{values:[0,.5,1,1.5],colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
       color="{colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
       var="YTD Inc. USD over OP"
@@ -57,6 +64,6 @@ shinyServer(function(input, output) {
     if (input$adjust==2){
       data<-HTD3
     }
-    gvisTable(data,options=list(width=450))
+    gvisTable(data,options=list(width=500))
   })
 })

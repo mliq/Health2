@@ -20,7 +20,7 @@ shinyUI(navbarPage("IPD International $1 Billion Challenge",
                                        tableOutput('myTable2'),
                                        h4(htmlOutput('text1'))
                                 ),
-                                column(4,
+                                column(8,
                                        h4("Data Table (sortable)"),
                                        htmlOutput('myTable')
                                 )
