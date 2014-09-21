@@ -24,26 +24,27 @@ shinyServer(function(input, output) {
   
   ##HTD , starting from YTD4
   #Cut to HTD columns
-  HTD1<-YTD4[,c(8:10)]
+  HTD1<-YTD4[,c(1,8:10)]
   #Make numeric sort column, sort, erase sort column
   HTD1$"sort3" <- as.numeric(sub("\\%","", HTD1$"LCG % pts. over OP"))
   HTD2<-HTD1[order(-HTD1$sort3),]
   rownames(HTD2)<-c(1:dim(HTD2)[1])
-  HTD3<-cbind("Rank"=rownames(HTD2),HTD2[,1:3])
+  HTD3<-cbind("Rank"=rownames(HTD2),HTD2[,1:4])
   #HTD Table ready.
   
   #MAP
   output$myMap <- renderGvis({  
     if (input$adjust==1){
-      data<-cbind(YTD7,"$$overOP"=as.numeric(sub("\\$", "", YTD7$"YTD Incremental $$ over OP")))
-      color="{values:[0,.5,1,1.5],colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
-      var="$$overOP"
+      data<-cbind(YTD7,"YTD Inc. USD over OP"=as.numeric(sub("\\$", "", YTD7$"YTD Incremental $$ over OP")))
+      #color="{values:[0,.5,1,1.5],colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
+      color="{colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
+      var="YTD Inc. USD over OP"
     }
     if (input$adjust==2){
-      data<-cbind(HTD3,"LCG%"=as.factor(sub('\\%', '', HTD3$"LCG % pts. over OP")))
-      # data<-cbind(HTD3,"LCG%"=as.numeric(sub('\\%', '', HTD3$"LCG % pts. over OP")))
-      color="{values:[-10,0,10,20],colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
-      var="LCG%"
+      data<-cbind(HTD3,"LCG Perc. over OP"=as.numeric(sub('\\%', '', HTD3$"LCG % pts. over OP")))
+      #color="{values:[-50,0,10,30],colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
+      color="{colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
+      var="LCG Perc. over OP"
     }
   gvisGeoChart(data, locationvar="Country/Region", colorvar=var, options=list(                              
                                     colorAxis=color,height=400,width=600,keepAspectRatio='false'))
