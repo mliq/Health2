@@ -3,43 +3,47 @@ library(shiny)
 
 shinyServer(function(input, output) {
   ###Pre-Processing
-  YTD <- read.csv("YTD.csv",stringsAsFactors=FALSE)
-	##YTD First
-  colnames(YTD)<-as.character(YTD[4,])
-  #Eliminate Extra Header Rows
-  YTD2<-YTD[5:27,]
-  #Just FULL YEAR section AND Countries
-  YTD3<-cbind("Rank"=c(1:23),"Country/Region"=YTD2$COUNTRY,YTD2[,15:18])
-  #Rownames orderly again (if this matters I don't know yet)
-  rownames(YTD3)<-c(1:23)
-  ##
-  ##HTD Now
-  HTD <- read.csv("HTD.csv",stringsAsFactors=FALSE)
-  colnames(HTD)<-as.character(HTD[4,])
-  #Eliminate Extra Header Rows
-  HTD2<-HTD[5:27,]
-  #Just FULL YEAR section AND Countries
-  HTD3<-cbind("Rank"=c(1:23),"Country/Region"=HTD2$COUNTRY,HTD2[,11:13])
-  #Rownames orderly again (if this matters I don't know yet)
-  rownames(HTD3)<-c(1:23)
-  YTD<-YTD3
-  HTD<-HTD3
-  colnames(HTD)[5]<-"LCG % pts. over OP"
-  #gsub('\\$', '', YTD[,6])
-  ##
-  ###
-
+  YTD <- read.csv("1B.csv",stringsAsFactors=FALSE)
+  YTD <-YTD[-1:-4,]
+  YTD2<-YTD[,c(1,6:11,13:15)]
+  #Columns selected, 
+  #Row and column names
+  colnames(YTD2)<-as.character(c("Country/Region","Full Year OP","YTD OP","YTD Actuals","% to OP","Meets OI Requirements", "YTD Incremental $$ over OP", "% Local Growth OP", "% Local Growth Actual", "LCG % pts. over OP"))
+  #Filter
+  YTD2$"sort1" <- as.numeric(sub("\\$","", YTD2$"Full Year OP"))
+  YTD3<- subset(YTD2,sort1>=7)
+  YTD4<-subset(YTD3,YTD3$"Meets OI Requirements"=="YES")
+  #Cut to YTD columns
+  YTD5<-YTD4[,c(1:5,7)]
+  #Make numeric sort column, sort, erase sort column
+  YTD5$"sort2" <- as.numeric(sub("\\$","", YTD5$"YTD Incremental $$ over OP"))
+  YTD6<-YTD5[order(-YTD5$sort2),]
+  rownames(YTD6)<-c(1:dim(YTD6)[1])
+  YTD7<-cbind("Rank"=rownames(YTD6),YTD6[,1:6])
+  #YTD Table ready.
+  
+  ##HTD , starting from YTD4
+  #Cut to HTD columns
+  HTD1<-YTD4[,c(8:10)]
+  #Make numeric sort column, sort, erase sort column
+  HTD1$"sort3" <- as.numeric(sub("\\%","", HTD1$"LCG % pts. over OP"))
+  HTD2<-HTD1[order(-HTD1$sort3),]
+  rownames(HTD2)<-c(1:dim(HTD2)[1])
+  HTD3<-cbind("Rank"=rownames(HTD2),HTD2[,1:3])
+  #HTD Table ready.
+  
   #MAP
   output$myMap <- renderGvis({  
     if (input$adjust==1){
-      data<-cbind(YTD," $$ over OP"=as.numeric(gsub('\\$', '', YTD[,6])))
-      color="{values:[0,.5,1,1.1],colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
-      var=" $$ over OP"
+      data<-cbind(YTD7,"$$overOP"=as.numeric(sub("\\$", "", YTD7$"YTD Incremental $$ over OP")))
+      color="{values:[0,.5,1,1.5],colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
+      var="$$overOP"
     }
     if (input$adjust==2){
-      data<-cbind(HTD," LCG % pts. over OP"=as.numeric(gsub('\\%', '', HTD[,5])))
-      color="{values:[0,5,10,20],colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
-      var=" LCG % pts. over OP"
+      data<-cbind(HTD3,"LCG%"=as.factor(sub('\\%', '', HTD3$"LCG % pts. over OP")))
+      # data<-cbind(HTD3,"LCG%"=as.numeric(sub('\\%', '', HTD3$"LCG % pts. over OP")))
+      color="{values:[-10,0,10,20],colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
+      var="LCG%"
     }
   gvisGeoChart(data, locationvar="Country/Region", colorvar=var, options=list(                              
                                     colorAxis=color,height=400,width=600,keepAspectRatio='false'))
@@ -47,10 +51,10 @@ shinyServer(function(input, output) {
   #TABLE
   output$myTable <- renderGvis({
     if (input$adjust==1){
-      data<-YTD
+      data<-YTD7
     }
     if (input$adjust==2){
-      data<-HTD
+      data<-HTD3
     }
     gvisTable(data,options=list(width=450))
   })

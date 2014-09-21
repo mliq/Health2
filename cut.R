@@ -1,5 +1,49 @@
 setwd("C:/Users/Michael/SkyDrive/Coursera/GitHub/Health2")
 
+YTD<-1B Dollar Challenge_Data (no links).csv
+
+
+HTD <- read.csv("HTD.csv",stringsAsFactors=FALSE)
+colnames(HTD)<-as.character(HTD[4,])
+#Eliminate Extra Header Rows
+HTD2<-HTD[5:27,]
+#Just FULL YEAR section AND Countries
+HTD3<-cbind("Rank"=c(1:23),"Country/Region"=HTD2$COUNTRY,HTD2[,11:13])
+#Rownames orderly again (if this matters I don't know yet)
+rownames(HTD3)<-c(1:23)
+YTD<-YTD3
+HTD<-HTD3
+colnames(HTD)[5]<-"LCG % pts. over OP"
+#gsub('\\$', '', YTD[,6])
+##
+###
+
+
+YTD5<-YTD4[order(-YTD4$sort1),]
+rownames(YTD5)<-c(1:dim(YTD5)[1])
+YTD6<-cbind("Rank"=rownames(YTD5),YTD5)
+#Data prepped and sorted for YTD contest, now eliminate columns
+YTD7<-YTD6[,c(1:6,8)]
+
+#Cut Meets OI after Filtering
+YTD5<-
+  ### OLD
+  
+  ##YTD First
+  colnames(YTD)<-as.character(YTD[4,])
+#Eliminate Extra Header Rows
+YTD2<-YTD[5:27,]
+#Just FULL YEAR section AND Countries
+YTD3<-cbind("Rank"=c(1:23),"Country/Region"=YTD2$COUNTRY,YTD2[,15:18])
+#Rownames orderly again (if this matters I don't know yet)
+rownames(YTD3)<-c(1:23)
+##
+==
+library(xlsx)
+cameraData <- read.xlsx("./data/cameras.xlsx",sheetIndex=1,header=TRUE)
+head(cameraData)
+
+==
 color="{values:[0,0,.5,1],colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
 color="{values:[0,5,10,20],colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
 
