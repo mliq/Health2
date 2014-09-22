@@ -33,11 +33,46 @@ shinyServer(function(input, output) {
   #HTD Table ready.
   
   ###Fix non-displayed countries
+  #UK Ireland
   YTD8<-YTD7
-  YTD8[,2]<-gsub("UK Ireland", "Great Britain", YTD8[,2])
-  #Ireland
-  YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Great Britain"),])
-  YTD8[dim(YTD8)[1],2]<-"Ireland"
+  if (!is.null(which(YTD8[2]=="UK Ireland"))) {
+    YTD8[,2]<-gsub("UK Ireland", "Great Britain", YTD8[,2])
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Great Britain"),])
+    YTD8[dim(YTD8)[1],2]<-"Ireland"
+  }
+  if (!is.null(which(YTD8[2]=="UK Ireland"))) {
+    YTD8[,2]<-gsub("UK Ireland", "Great Britain", YTD8[,2])
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Great Britain"),])
+    YTD8[dim(YTD8)[1],2]<-"Ireland"
+  }
+  #if (!is.null(which(YTD8[2]=="UK Ireland")) && which(YTD8[2]=="UK Ireland")!=0) {
+    #YTD8[,2]<-gsub("UK Ireland", "Great Britain", YTD8[,2])
+    #YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Great Britain"),])
+    #YTD8[dim(YTD8)[1],2]<-"Ireland"
+  #}
+  #if (which(YTD8[2]=="UK Ireland")!=0) {
+    #YTD8[,2]<-gsub("UK Ireland", "Great Britain", YTD8[,2])
+    #YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Great Britain"),])
+    #YTD8[dim(YTD8)[1],2]<-"Ireland"
+  #}
+  #test if country does not exist.
+#  YTD8[,2]<-gsub("NORDIC", "hot pocket", YTD8[,2])
+  #YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="hot pocket"),])
+  #If (which(YTD8[2]=="hot pocket")!=0) {
+  #YTD8[dim(YTD8)[1],2]<-"Ireland"
+  #}
+  
+  #LAST line will screw up, so need exception.
+  
+  #Alpine = Swiss, Liechtenstein, Austria.
+  #Benelux = Belgium, Luxembourg, Netherlands
+  #Gulf = Kuwait, Bahrain, Oman, Qatar, UAE
+  #Iberia = Port, spain
+  #ANZ = NA for now
+  #Nordic = NA for now
+  #Central America & Caribbean Region = DR, Panama, Guatemala, CR, Honduras, Nicaragua, El Salvador
+  #Andean Region = Ecuador, Peru, Bolivia
+  
   
   ###MAP
   output$myMap <- renderGvis({  
