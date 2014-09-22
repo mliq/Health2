@@ -14,13 +14,13 @@ shinyUI(navbarPage("IPD International $1 Billion Challenge",
                                 )
                               ),
                               fluidRow(
-                                column(4, 
-                                       h4("Select A Country for Summary:"),
-                                       uiOutput("cSelector"),
-                                       tableOutput('myTable2'),
-                                       h4(htmlOutput('text1'))
-                                ),
-                                column(8,
+                                #column(4, 
+                                #       h4("Select A Country for Summary:"),
+                                #       uiOutput("cSelector"),
+                                #       tableOutput('myTable2'),
+                                #       h4(htmlOutput('text1'))
+                                #),
+                                column(12,
                                        h4("Data Table (sortable)"),
                                        htmlOutput('myTable')
                                 )
