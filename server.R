@@ -6,11 +6,16 @@ shinyServer(function(input, output) {
   YTD <- read.csv("1B.csv",stringsAsFactors=FALSE)
   YTD <-YTD[-1:-4,]
   YTD2<-YTD[,c(1,6:11,13:15)]
+  YTD2=apply(YTD2, c(1,2), function(x) gsub('\\%', '', x)) 
+  YTD2=apply(YTD2, c(1,2), function(x) gsub('\\$', '', x)) 
+  YTD2=data.frame(YTD2)
+  #YTD2[,2:9] <- sapply(YTD2[,2:9], as.numeric)
+  as.numeric
   #Columns selected, 
   #Row and column names
-  colnames(YTD2)<-as.character(c("Country/Region","Full Year OP","YTD OP","YTD Actuals","% to OP","Meets OI Requirements", "YTD Incremental $$ over OP", "% Local Growth OP", "% Local Growth Actual", "LCG % pts. over OP"))
+  colnames(YTD2)<-as.character(c("Country/Region","Full Year OP ($$)","YTD OP ($$)","YTD Actuals ($$)","% to OP","Meets OI Requirements", "YTD Incremental $$ over OP", "% Local Growth OP", "% Local Growth Actual", "LCG % pts. over OP"))
   #Filter
-  YTD2$"sort1" <- as.numeric(sub("\\$","", YTD2$"Full Year OP"))
+  YTD2$"sort1" <- as.numeric(sub("\\$","", YTD2$"Full Year OP ($$)"))
   YTD3<- subset(YTD2,sort1>=7)
   YTD4<-subset(YTD3,YTD3$"Meets OI Requirements"=="YES")
   #Cut to YTD columns
@@ -117,6 +122,7 @@ shinyServer(function(input, output) {
   }
   YTD9<-regions(YTD9)
   HTD4<-regions(HTD4)
+  
   ###MAP
   output$myMap <- renderGvis({  
     if (input$adjust==1){
