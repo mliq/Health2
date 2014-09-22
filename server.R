@@ -13,7 +13,7 @@ shinyServer(function(input, output) {
   as.numeric
   #Columns selected, 
   #Row and column names
-  colnames(YTD2)<-as.character(c("Country/Region","Full Year OP ($$)","YTD OP ($$)","YTD Actuals ($$)","% to OP","Meets OI Requirements", "YTD Incremental $$ over OP", "% Local Growth OP", "% Local Growth Actual", "LCG % pts. over OP"))
+  colnames(YTD2)<-as.character(c("Country/Region","Full Year OP ($$)","YTD OP ($$)","YTD Actuals ($$)","% to OP (%)","Meets OI Requirements", "YTD Incremental over OP ($$)", "% Local Growth OP", "% Local Growth Actual", "LCG % pts. over OP"))
   #Filter
   YTD2$"sort1" <- as.numeric(sub("\\$","", YTD2$"Full Year OP ($$)"))
   YTD3<- subset(YTD2,sort1>=7)
@@ -21,7 +21,7 @@ shinyServer(function(input, output) {
   #Cut to YTD columns
   YTD5<-YTD4[,c(1:5,7)]
   #Make numeric sort column, sort, erase sort column
-  YTD5$"sort2" <- as.numeric(sub("\\$","", YTD5$"YTD Incremental $$ over OP"))
+  YTD5$"sort2" <- as.numeric(sub("\\$","", YTD5$"YTD Incremental over OP ($$)"))
   YTD6<-YTD5[order(-YTD5$sort2),]
   rownames(YTD6)<-c(1:dim(YTD6)[1])
   YTD7<-cbind("Rank"=rownames(YTD6),YTD6[,1:6])
@@ -126,7 +126,7 @@ shinyServer(function(input, output) {
   ###MAP
   output$myMap <- renderGvis({  
     if (input$adjust==1){
-      data<-cbind(YTD9,"YTD Inc. USD over OP"=as.numeric(sub("\\$", "", YTD9$"YTD Incremental $$ over OP")))
+      data<-cbind(YTD9,"YTD Inc. USD over OP"=as.numeric(sub("\\$", "", YTD9$"YTD Incremental over OP ($$)")))
       #color="{values:[0,.5,1,1.5],colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
       color="{colors:['#FF0000', '#FFC0CB', '#FFA500','#008000']}"
       var="YTD Inc. USD over OP"
@@ -144,10 +144,20 @@ shinyServer(function(input, output) {
   output$myTable <- renderGvis({
     if (input$adjust==1){
       data<-YTD7
+      data[,1]=as.numeric(as.character(data[,1]))
+      data[,3]=as.numeric(as.character(data[,3]))
+      data[,4]=as.numeric(as.character(data[,4]))
+      data[,5]=as.numeric(as.character(data[,5]))
+      data[,6]=as.numeric(as.character(data[,6]))
+      data[,7]=as.numeric(as.character(data[,7]))
     }
     if (input$adjust==2){
       data<-HTD3
+      data[,1]=as.numeric(as.character(data[,1]))
+      data[,3]=as.numeric(as.character(data[,3]))
+      data[,4]=as.numeric(as.character(data[,4]))
+      data[,5]=as.numeric(as.character(data[,5]))
     }
-    gvisTable(data,options=list(width=500))
+    gvisTable(data,options=list(width=600))
   })
 })
