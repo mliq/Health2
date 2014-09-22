@@ -40,40 +40,78 @@ shinyServer(function(input, output) {
     YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Great Britain"),])
     YTD8[dim(YTD8)[1],2]<-"Ireland"
   }
-  if (!is.null(which(YTD8[2]=="UK Ireland"))) {
-    YTD8[,2]<-gsub("UK Ireland", "Great Britain", YTD8[,2])
-    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Great Britain"),])
-    YTD8[dim(YTD8)[1],2]<-"Ireland"
-  }
-  #if (!is.null(which(YTD8[2]=="UK Ireland")) && which(YTD8[2]=="UK Ireland")!=0) {
-    #YTD8[,2]<-gsub("UK Ireland", "Great Britain", YTD8[,2])
-    #YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Great Britain"),])
-    #YTD8[dim(YTD8)[1],2]<-"Ireland"
-  #}
-  #if (which(YTD8[2]=="UK Ireland")!=0) {
-    #YTD8[,2]<-gsub("UK Ireland", "Great Britain", YTD8[,2])
-    #YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Great Britain"),])
-    #YTD8[dim(YTD8)[1],2]<-"Ireland"
-  #}
-  #test if country does not exist.
-#  YTD8[,2]<-gsub("NORDIC", "hot pocket", YTD8[,2])
-  #YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="hot pocket"),])
-  #If (which(YTD8[2]=="hot pocket")!=0) {
-  #YTD8[dim(YTD8)[1],2]<-"Ireland"
-  #}
-  
-  #LAST line will screw up, so need exception.
-  
   #Alpine = Swiss, Liechtenstein, Austria.
+  if (!is.null(which(YTD8[2]=="Alpine"))) {
+    YTD8[,2]<-gsub("Alpine", "Switzerland", YTD8[,2])
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Switzerland"),])
+    YTD8[dim(YTD8)[1],2]<-"Liechtenstein"
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Switzerland"),])
+    YTD8[dim(YTD8)[1],2]<-"Austria"
+  }
   #Benelux = Belgium, Luxembourg, Netherlands
+  if (!is.null(which(YTD8[2]=="Benelux"))) {
+    YTD8[,2]<-gsub("Benelux", "Netherlands", YTD8[,2])
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Netherlands"),])
+    YTD8[dim(YTD8)[1],2]<-"Luxembourg"
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Netherlands"),])
+    YTD8[dim(YTD8)[1],2]<-"Belgium"
+  }
   #Gulf = Kuwait, Bahrain, Oman, Qatar, UAE
+  if (!is.null(which(YTD8[2]=="Gulf"))) {
+    YTD8[,2]<-gsub("Gulf", "United Arab Emirates", YTD8[,2])
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="United Arab Emirates"),])
+    YTD8[dim(YTD8)[1],2]<-"Oman"
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="United Arab Emirates"),])
+    YTD8[dim(YTD8)[1],2]<-"Qatar"
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="United Arab Emirates"),])
+    YTD8[dim(YTD8)[1],2]<-"Bahrain"
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="United Arab Emirates"),])
+    YTD8[dim(YTD8)[1],2]<-"Kuwait"
+  }
   #Iberia = Port, spain
+  if (!is.null(which(YTD8[2]=="Iberia"))) {
+    YTD8[,2]<-gsub("Iberia", "Spain", YTD8[,2])
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Spain"),])
+    YTD8[dim(YTD8)[1],2]<-"Portugal"
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Spain"),])
+    YTD8[dim(YTD8)[1],2]<-"Andorra"
+  }
+  #Central America & Caribbean Region = DR, Panama, Guatemala, CR, Honduras, Nicaragua, El Salvador
+  if (!is.null(which(YTD8[2]=="Central America & Caribbean Region"))) {
+    YTD8[,2]<-gsub("Central America & Caribbean Region", "Dominican Republic", YTD8[,2])
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Dominican Republic"),])
+    YTD8[dim(YTD8)[1],2]<-"Panama"
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Dominican Republic"),])
+    YTD8[dim(YTD8)[1],2]<-"Guatemala"
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Dominican Republic"),])
+    YTD8[dim(YTD8)[1],2]<-"Costa Rica"
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Dominican Republic"),])
+    YTD8[dim(YTD8)[1],2]<-"Honduras"
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Dominican Republic"),])
+    YTD8[dim(YTD8)[1],2]<-"Nicaragua"
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Dominican Republic"),])
+    YTD8[dim(YTD8)[1],2]<-"El Salvador"
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Dominican Republic"),])
+    YTD8[dim(YTD8)[1],2]<-"Jamaica"
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Dominican Republic"),])
+    YTD8[dim(YTD8)[1],2]<-"Trinidad and Tobago"
+  }
+  #Andean Region = Ecuador, Peru, Bolivia, Paraguay
+  if (!is.null(which(YTD8[2]=="Andean Region"))) {
+    YTD8[,2]<-gsub("Andean Region", "Ecuador", YTD8[,2])
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Ecuador"),])
+    YTD8[dim(YTD8)[1],2]<-"Peru"
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Ecuador"),])
+    YTD8[dim(YTD8)[1],2]<-"Bolivia"
+    YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Ecuador"),])
+    YTD8[dim(YTD8)[1],2]<-"Paraguay"
+  }
   #ANZ = NA for now
   #Nordic = NA for now
-  #Central America & Caribbean Region = DR, Panama, Guatemala, CR, Honduras, Nicaragua, El Salvador
-  #Andean Region = Ecuador, Peru, Bolivia
-  
-  
+  #Argentina Uruguay
+  #Cesko
+  #Singapore Region
+
   ###MAP
   output$myMap <- renderGvis({  
     if (input$adjust==1){
