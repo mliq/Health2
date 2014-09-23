@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>TableID1ad83c8f2a2</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<style type="text/css">
+body {
+  color: #444444;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 75%;
+  }
+  a {
+  color: #4D87C7;
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+ <!-- Table generated in R 3.1.1 by googleVis 0.5.5 package -->
+<!-- Tue Sep 23 16:48:11 2014 -->
+
+
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataTableID1ad83c8f2a2 () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+ 1,
+"Chile",
+5.9,
+32.9,
+27 
+],
+[
+ 2,
+"Andean Region",
+12.1,
+21.4,
+9.2 
+],
+[
+ 3,
+"India",
+10.7,
+18.4,
+7.7 
+],
+[
+ 4,
+"Colombia",
+18.4,
+24.2,
+5.8 
+],
+[
+ 5,
+"Brazil",
+16.4,
+19.8,
+3.4 
+],
+[
+ 6,
+"Korea",
+10.9,
+12.2,
+1.3 
+],
+[
+ 7,
+"UK Ireland",
+4.7,
+4.5,
+-0.2 
+],
+[
+ 8,
+"Germany",
+-8.7,
+-11.2,
+-2.6 
+],
+[
+ 9,
+"Benelux",
+5.6,
+0.8,
+-4.7 
+],
+[
+ 10,
+"Iberia",
+4.1,
+-4.6,
+-8.7 
+],
+[
+ 11,
+"Alpine",
+10.1,
+-0.8,
+-10.9 
+],
+[
+ 12,
+"Mexico",
+18.3,
+6.8,
+-11.5 
+],
+[
+ 13,
+"France",
+4.5,
+-12.8,
+-17.2 
+],
+[
+ 14,
+"Central America & Caribbean Region",
+31.4,
+13.6,
+-17.8 
+],
+[
+ 15,
+"Turkey",
+52.1,
+28.5,
+-23.6 
+],
+[
+ 16,
+"Gulf",
+29,
+-15.1,
+-44.1 
+],
+[
+ 17,
+"China",
+64.3,
+19.2,
+-45.1 
+] 
+];
+data.addColumn('number','Rank');
+data.addColumn('string','Country/Region');
+data.addColumn('number','% Local Growth OP');
+data.addColumn('number','% Local Growth Actual');
+data.addColumn('number','LCG % pts. over OP');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartTableID1ad83c8f2a2() {
+var data = gvisDataTableID1ad83c8f2a2();
+var options = {};
+options["allowHtml"] = true;
+options["width"] =    600;
+
+
+    var chart = new google.visualization.Table(
+    document.getElementById('TableID1ad83c8f2a2')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "table";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartTableID1ad83c8f2a2);
+})();
+function displayChartTableID1ad83c8f2a2() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+ 
+// jsFooter
+</script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID1ad83c8f2a2"></script>
+ 
+<!-- divChart -->
+  
+<div id="TableID1ad83c8f2a2" 
+  style="width: 600; height: automatic;">
+</div>
+ <div><span>Data: data &#8226; Chart ID: <a href="Chart_TableID1ad83c8f2a2.html">TableID1ad83c8f2a2</a> &#8226; <a href="https://github.com/mages/googleVis">googleVis-0.5.5</a></span><br /> 
+<!-- htmlFooter -->
+<span> 
+  R version 3.1.1 (2014-07-10) 
+  &#8226; <a href="https://developers.google.com/terms/">Google Terms of Use</a> &#8226; <a href="https://google-developers.appspot.com/chart/interactive/docs/gallery/table">Documentation and Data Policy</a>
+</span></div>
+</body>
+</html>

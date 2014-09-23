@@ -24,7 +24,8 @@ shinyUI(navbarPage("IPD International $1 Billion Challenge",
                                        h4("Data Table (sortable) - Updated through August 2014*"),
                                        h5("*Only countries/territories that meet OI requirement (2013 OI < 2014 OI) appear on this table. "),
                                        h5("Countries listed in the table will only be eligible if they meet  OP by end of year. "),
-                                       htmlOutput('myTable')
+                                       htmlOutput('myTable'),
+                                       tags$head(tags$style(type="text/css", ".myTableHeadrow {background-color:red;} .myTablerow {background-color:yellow;}"))
                                 )
                               )
                             )                          

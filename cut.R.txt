@@ -1,3 +1,5 @@
+h5(HTML("&nbsp;"),"Countries listed in the table will only be eligible if they meet  OP by end of year. "),
+
 setwd("C:/Users/Michael/SkyDrive/Coursera/GitHub/Health2")
 
 YTD<-1B Dollar Challenge_Data (no links).csv

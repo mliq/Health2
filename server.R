@@ -158,6 +158,6 @@ shinyServer(function(input, output) {
       data[,4]=as.numeric(as.character(data[,4]))
       data[,5]=as.numeric(as.character(data[,5]))
     }
-    gvisTable(data,options=list(width=600))
+    gvisTable(data,options=list(width=600,cssClassNames = "{headerRow: 'myTableHeadrow', tableRow: 'myTablerow'}", alternatingRowStyle = FALSE))
   })
 })
