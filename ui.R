@@ -21,7 +21,8 @@ shinyUI(navbarPage("IPD International $1 Billion Challenge",
                                 #       h4(htmlOutput('text1'))
                                 #),
                                 column(12,
-                                       h4("Data Table (sortable)"),
+                                       h4("Data Table (sortable) - Updated through August 2014*"),
+                                       h5("*Only countries/territories that meet OI requirement (2013 OI < 2014 OI) appear on this table. "),
                                        htmlOutput('myTable')
                                 )
                               )
