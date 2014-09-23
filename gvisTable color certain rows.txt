@@ -1,0 +1,35 @@
+gvisTable color certain rows
+
+Now, there is this format() function call, you have to insert it within the html using something like this (http://stackoverflow.com/questions/11321883/r-gvistable-pre-selection-using-event-trigger-option-and-javascript-code):
+mytab$html$chart["jsDrawChart"] <- "\n// jsDrawChart\nfunction drawChartmyTable() {\n  var data = gvisDatamyTable();\n  var options = {};\noptions[\"allowHtml\"] = true;\n\n     var chart = new google.visualization.Table(\n       document.getElementById('myTable')\n     );\n     chart.draw(data,options);\n  chart.setSelection([{'row':2, 'column':null}]);   \n\n}\n  \n"
+
+AND
+https://google-developers.appspot.com/chart/interactive/docs/gallery/table
+https://google-developers.appspot.com/chart/interactive/docs/reference#formatters
+
+var formatter = new google.visualization.ColorFormat();
+formatter.format(data, 1); // Apply formatter to second column
+#before table.draw (chart.draw here)
+
+So test: (BUT it seems it can only apply to rows!)
+
+
+REPLACING THIS:
+// jsDrawChart
+function drawChartTableID1ad83c8f2a2() {
+var data = gvisDataTableID1ad83c8f2a2();
+var options = {};
+options["allowHtml"] = true;
+options["width"] =    600;
+
+
+    var chart = new google.visualization.Table(
+    document.getElementById('TableID1ad83c8f2a2')
+    );
+    chart.draw(data,options);
+    
+
+}
+WITH: all that in \n form plus:
+ var formatter = new google.visualization.ColorFormat();\n formatter.addRange(-20000, 0, 'white', 'orange');\nformatter.addRange(20000, null, 'red', '#33ff33');""
+formatter.format(data, 1); 
