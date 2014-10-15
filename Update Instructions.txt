@@ -1,17 +1,22 @@
 Update Instructions:
 
+DEPLOY:
+	setwd("C:/Users/Michael/SkyDrive/Code/GitHub/Health2")
+	deployApp("C:/Users/Michael/SkyDrive/Code/GitHub/Health2")
+
 As long as Save xlsx as 1B.csv. As long as columns same, should work.
 
 Now, check for new Countries in BOTH contests. These may not render because they may need to be renamed to ISO.
 
+Future quetsions:
+	Always the same new Counrties? (I thoink so)
+
 New in SEPT YTD:
 	-Saudi - works
-	-Germany
-	-ANZ
-	-Venezuela
-	-Japan
-
-
+	-Germany - works
+	-ANZ - NO
+	-Venezuela - Works
+	-Japan - Works
 
 SEPT HTD:
 	-Saudi

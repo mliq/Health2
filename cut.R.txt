@@ -1,4 +1,4 @@
-setwd("C:/Users/Michael/SkyDrive/Coursera/GitHub/Health2")
+setwd("C:/Users/Michael/SkyDrive/Code/GitHub/Health2")
 
 YTD<-1B Dollar Challenge_Data (no links).csv
 
