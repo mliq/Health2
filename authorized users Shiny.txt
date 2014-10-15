@@ -6,3 +6,17 @@ shiny::runApp('C:/Users/Michael/SkyDrive/Coursera/GitHub/HealthMap')
 
 #set back
 setwd("C:/Users/Michael/SkyDrive/Coursera/R")
+
+#Open in R:
+setwd("C:/Users/Michael/SkyDrive/Coursera/GitHub/Health2")
+addAuthorizedUser("Sole")
+addAuthorizedUser("3m")
+
+setwd("C:/Users/Michael/SkyDrive/Coursera/GitHub/Health2")
+library("shinyapps")
+deployApp("C:/Users/Michael/SkyDrive/Coursera/GitHub/Health2")
+
+shiny::runApp('C:/Users/Michael/SkyDrive/Coursera/GitHub/HealthMap')
+
+#set back
+setwd("C:/Users/Michael/SkyDrive/Coursera/R")
