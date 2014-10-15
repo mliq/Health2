@@ -1,0 +1,77 @@
+A. Can I color rows of the Table?
+
+XA. Remove % and $ for sorting purposes.
+
+X A. Fix non-displayed Countries.
+		Uppercase ISO-3166 Codes: http://en.wikipedia.org/wiki/ISO_3166-1
+		Regions will have to be made multiple countries in an additional table:
+			UK IRELAND
+			NORDIC
+			Alpine = 
+			Benelux = 
+			Gulf = 
+			Iberia = Port, spain
+			Central America & Caribbean Region = DR, Panama, Guatemala, CR, Honduras, Nicaragua, El Salvador
+			Andean Region = Ecuador, Peru, Bolivia
+
+B. Can I color rows of the Table?
+C. Calculator/summary display
+
+--
+Filter to:
+G >=7
+Yes under K
+
+Rank by Key.
+
+YTD Absolute $:
+	Key: YTD Incremental $$ over OP 
+	Include: H,I,J,L
+HTD LC%:
+	Key: LCG % pts. over OP
+	Include: N,O,P
+
+Table coloring?
+
+1. Import and cut down to G,H,I,J,L,N,O,P:
+7,8,9,10,12,14,15,16
+7:10,12,14:16
+
+============	
+FIRST ROUND:
+
+Slider: YTD, HTD
+
+TO DO: 
+	A. Fix non-displayed Countries.
+		Uppercase ISO-3166 Codes: http://en.wikipedia.org/wiki/ISO_3166-1
+		Regions will have to be made multiple countries in an additional table:
+			UK IRELAND
+			NORDIC
+			?
+			
+	0. Can I color rows of the Table?
+	1. see how reading in Excel file with multiple sheets works.
+	2. Calculator becomes profile summary
+	3. Slider must change table also so perhaps do in tabs.
+	4. Graphics?
+	5. Name? IPD International $1 Billion Challenge 2014
+	6. Accounts/passwords?
+
+Columns on site table:
+	YTD: OI, OP, Actual, Incremental (Add OI, erase %OP)
+	HTD: OI, OP, Actual, %LG OP, %LG Actual, LCG% over OP
+
+YTD:
+	incremental/OP in Absolute $ ($)
+	Coloring by: Incremental $$ over OP column.
+		Top two are blue (2 winners in each)
+		gradient green-yellow,
+		disqualified are different gradient of red.
+
+HTD:
+	Delta % / OP in LC (%)
+
+
+Column for Operational Income 2013 will be added because must be improved over that to be eligible. OP is the plan for OI 2014.
+	(Some OPs are less than 2013 OI)

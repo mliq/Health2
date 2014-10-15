@@ -9,9 +9,6 @@ shinyServer(function(input, output) {
   YTD2=apply(YTD2, c(1,2), function(x) gsub('\\%', '', x)) 
   YTD2=apply(YTD2, c(1,2), function(x) gsub('\\$', '', x)) 
   YTD2=data.frame(YTD2)
-  #YTD2[,2:9] <- sapply(YTD2[,2:9], as.numeric)
-  as.numeric
-  #Columns selected, 
   #Row and column names
   colnames(YTD2)<-as.character(c("Country/Region","Full Year OP ($$)","YTD OP ($$)","YTD Actuals ($$)","% to OP (%)","Meets OI Requirements", "YTD Incremental over OP ($$)", "% Local Growth OP", "% Local Growth Actual", "LCG % pts. over OP"))
   #Filter
@@ -114,6 +111,11 @@ shinyServer(function(input, output) {
       YTD8[dim(YTD8)[1],2]<-"Paraguay"
     }
     #ANZ = NA for now
+    if (!is.null(which(YTD8[2]=="ANZ"))) {
+      YTD8[,2]<-gsub("ANZ", "Australia", YTD8[,2])
+      YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Australia"),])
+      YTD8[dim(YTD8)[1],2]<-"New Zealand"
+    }
     #Nordic = NA for now
     #Argentina Uruguay
     #Cesko

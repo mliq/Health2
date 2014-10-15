@@ -1,0 +1,24 @@
+Update Instructions:
+
+As long as Save xlsx as 1B.csv. As long as columns same, should work.
+
+Now, check for new Countries in BOTH contests. These may not render because they may need to be renamed to ISO.
+
+New in SEPT YTD:
+	-Saudi - works
+	-Germany
+	-ANZ
+	-Venezuela
+	-Japan
+
+
+
+SEPT HTD:
+	-Saudi
+	-ANZ
+	-Japan
+	-Venezuela
+
+Also, why 19>17 this month? FILTER
+	WHat is the filter?
+	Full Year OP$$ >=7 AND OI req. = YES
