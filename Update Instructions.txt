@@ -1,5 +1,11 @@
 Update Instructions:
 
+C:\Users\Michael\SkyDrive\Code\GitHub\Health2
+C:\Users\Michael\SkyDrive\Business\3M
+
+1. rename new file as 1B.csv
+2. change updated month in UI.R
+
 DEPLOY:
 	setwd("C:/Users/Michael/SkyDrive/Code/GitHub/Health2")
 	deployApp("C:/Users/Michael/SkyDrive/Code/GitHub/Health2")
@@ -7,6 +13,10 @@ DEPLOY:
 As long as Save xlsx as 1B.csv. As long as columns same, should work.
 
 Now, check for new Countries in BOTH contests. These may not render because they may need to be renamed to ISO.
+
+New in NOV update:
+
+-Taiwan?
 
 Future quetsions:
 	Always the same new Counrties? (I thoink so)
