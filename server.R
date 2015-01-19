@@ -40,7 +40,10 @@ shinyServer(function(input, output) {
   regions <- function(YTD8) {
     #UK Ireland
     if (!is.null(which(YTD8[2]=="UK Ireland"))) {
-      YTD8[,2]<-gsub("UK Ireland", "Great Britain", YTD8[,2])
+      YTD8[,2]<-gsub("UK Ireland", "Ireland", YTD8[,2])
+      YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Ireland"),])
+      YTD8[dim(YTD8)[1],2]<-"Great Britain"
+      
       YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Great Britain"),])
       YTD8[dim(YTD8)[1],2]<-"Ireland"
     }
@@ -62,14 +65,14 @@ shinyServer(function(input, output) {
     }
     #Gulf = Kuwait, Bahrain, Oman, Qatar, UAE
     if (!is.null(which(YTD8[2]=="Gulf"))) {
-      YTD8[,2]<-gsub("Gulf", "United Arab Emirates", YTD8[,2])
-      YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="United Arab Emirates"),])
-      YTD8[dim(YTD8)[1],2]<-"Oman"
-      YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="United Arab Emirates"),])
+      YTD8[,2]<-gsub("Gulf", "Oman", YTD8[,2])
+      YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Oman"),])
+      YTD8[dim(YTD8)[1],2]<-"United Arab Emirates"
+      YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Oman"),])
       YTD8[dim(YTD8)[1],2]<-"Qatar"
-      YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="United Arab Emirates"),])
+      YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Oman"),])
       YTD8[dim(YTD8)[1],2]<-"Bahrain"
-      YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="United Arab Emirates"),])
+      YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Oman"),])
       YTD8[dim(YTD8)[1],2]<-"Kuwait"
     }
     #Iberia = Port, spain
