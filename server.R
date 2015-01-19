@@ -110,7 +110,7 @@ shinyServer(function(input, output) {
       YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Ecuador"),])
       YTD8[dim(YTD8)[1],2]<-"Paraguay"
     }
-    #ANZ = NA for now
+    #ANZ
     if (!is.null(which(YTD8[2]=="ANZ"))) {
       YTD8[,2]<-gsub("ANZ", "Australia", YTD8[,2])
       YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Australia"),])
