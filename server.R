@@ -13,7 +13,9 @@ shinyServer(function(input, output) {
   colnames(YTD2)<-as.character(c("Country/Region","Full Year OP ($$)","YTD OP ($$)","YTD Actuals ($$)","% to OP (%)","Meets OI Requirements", "YTD Incremental over OP ($$)", "% Local Growth OP", "% Local Growth Actual", "LCG % pts. over OP"))
   #Filter
   YTD2$"sort1" <- as.numeric(sub("\\$","", YTD2$"Full Year OP ($$)"))
-  YTD3<- subset(YTD2,sort1>=7)
+  
+  ## CUT OFF ALL WITH FULL YEAR OP ($$) LESS THAN 9.5 (Million)
+  YTD3<- subset(YTD2,sort1>=9.5)
   YTD4<-subset(YTD3,YTD3$"Meets OI Requirements"=="YES")
   #Cut to YTD columns
   YTD5<-YTD4[,c(1:5,7)]
@@ -39,16 +41,13 @@ shinyServer(function(input, output) {
   HTD4<-HTD3
   regions <- function(YTD8) {
     #UK Ireland
-    if (!is.null(which(YTD8[2]=="UK Ireland"))) {
+    if (length(which(YTD8[2]=="UK Ireland"))!=0) {
       YTD8[,2]<-gsub("UK Ireland", "Ireland", YTD8[,2])
       YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Ireland"),])
       YTD8[dim(YTD8)[1],2]<-"Great Britain"
-      
-      YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Great Britain"),])
-      YTD8[dim(YTD8)[1],2]<-"Ireland"
     }
     #Alpine = Swiss, Liechtenstein, Austria.
-    if (!is.null(which(YTD8[2]=="Alpine"))) {
+    if (length(which(YTD8[2]=="Alpine"))!=0) {
       YTD8[,2]<-gsub("Alpine", "Switzerland", YTD8[,2])
       YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Switzerland"),])
       YTD8[dim(YTD8)[1],2]<-"Liechtenstein"
@@ -56,15 +55,15 @@ shinyServer(function(input, output) {
       YTD8[dim(YTD8)[1],2]<-"Austria"
     }
     #Benelux = Belgium, Luxembourg, Netherlands
-    if (!is.null(which(YTD8[2]=="Benelux"))) {
-      YTD8[,2]<-gsub("Benelux", "Netherlands", YTD8[,2])
-      YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Netherlands"),])
-      YTD8[dim(YTD8)[1],2]<-"Luxembourg"
-      YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Netherlands"),])
-      YTD8[dim(YTD8)[1],2]<-"Belgium"
-    }
+     if (length(which(YTD8[2]=="Benelux"))!=0) {
+       YTD8[,2]<-gsub("Benelux", "Netherlands", YTD8[,2])
+       YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Netherlands"),])
+       YTD8[dim(YTD8)[1],2]<-"Luxembourg"
+       YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Netherlands"),])
+       YTD8[dim(YTD8)[1],2]<-"Belgium"
+   }
     #Gulf = Kuwait, Bahrain, Oman, Qatar, UAE
-    if (!is.null(which(YTD8[2]=="Gulf"))) {
+    if (length(which(YTD8[2]=="Gulf"))!=0) {
       YTD8[,2]<-gsub("Gulf", "Oman", YTD8[,2])
       YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Oman"),])
       YTD8[dim(YTD8)[1],2]<-"United Arab Emirates"
@@ -76,7 +75,7 @@ shinyServer(function(input, output) {
       YTD8[dim(YTD8)[1],2]<-"Kuwait"
     }
     #Iberia = Port, spain
-    if (!is.null(which(YTD8[2]=="Iberia"))) {
+    if (length(which(YTD8[2]=="Iberia"))!=0) {
       YTD8[,2]<-gsub("Iberia", "Spain", YTD8[,2])
       YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Spain"),])
       YTD8[dim(YTD8)[1],2]<-"Portugal"
@@ -84,7 +83,7 @@ shinyServer(function(input, output) {
       YTD8[dim(YTD8)[1],2]<-"Andorra"
     }
     #Central America & Caribbean Region = DR, Panama, Guatemala, CR, Honduras, Nicaragua, El Salvador
-    if (!is.null(which(YTD8[2]=="Central America & Caribbean Region"))) {
+    if (length(which(YTD8[2]=="Central America & Caribbean Region"))!=0) {
       YTD8[,2]<-gsub("Central America & Caribbean Region", "Dominican Republic", YTD8[,2])
       YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Dominican Republic"),])
       YTD8[dim(YTD8)[1],2]<-"Panama"
@@ -104,7 +103,7 @@ shinyServer(function(input, output) {
       YTD8[dim(YTD8)[1],2]<-"Trinidad and Tobago"
     }
     #Andean Region = Ecuador, Peru, Bolivia, Paraguay
-    if (!is.null(which(YTD8[2]=="Andean Region"))) {
+    if (length(which(YTD8[2]=="Andean Region"))!=0) {
       YTD8[,2]<-gsub("Andean Region", "Ecuador", YTD8[,2])
       YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Ecuador"),])
       YTD8[dim(YTD8)[1],2]<-"Peru"
@@ -114,12 +113,21 @@ shinyServer(function(input, output) {
       YTD8[dim(YTD8)[1],2]<-"Paraguay"
     }
     #ANZ
-    if (!is.null(which(YTD8[2]=="ANZ"))) {
+    if (length(which(YTD8[2]=="ANZ"))!=0) {
       YTD8[,2]<-gsub("ANZ", "Australia", YTD8[,2])
       YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Australia"),])
       YTD8[dim(YTD8)[1],2]<-"New Zealand"
     }
-    #Nordic = NA for now
+    #Nordic
+    if (length(which(YTD8[2]=="Nordic"))!=0) {
+      YTD8[,2]<-gsub("Nordic", "Norway", YTD8[,2])
+      YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Norway"),])
+      YTD8[dim(YTD8)[1],2]<-"Sweden"
+      YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Norway"),])
+      YTD8[dim(YTD8)[1],2]<-"Finland"
+      YTD8<-rbind(YTD8,YTD8[which(YTD8[2]=="Norway"),])
+      YTD8[dim(YTD8)[1],2]<-"Denmark"
+    }
     #Argentina Uruguay
     #Cesko
     #Singapore Region

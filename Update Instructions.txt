@@ -14,6 +14,11 @@ As long as Save xlsx as 1B.csv. As long as columns same, should work.
 
 Now, check for new Countries in BOTH contests. These may not render because they may need to be renamed to ISO.
 
+DEC Update Issues:
+- Must add Noridc
+- Why are Belgium and Luxembourg (but not NL) appearing in map but not in chart?
+
+
 New in NOV update:
 
 -Taiwan?
